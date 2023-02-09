@@ -72,6 +72,9 @@ describe("Signup Test", () => {
               browser.localStorage.setItem("token", userToken);
             },
           });
+          cy.wait(2000);
+          cy.get(".cdk-overlay-backdrop").click(-50, -50, { force: true });
+          cy.get(".fa-layers-counter").contains(0);
         });
     });
   });
