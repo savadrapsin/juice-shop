@@ -6,11 +6,14 @@ describe("Signup Test", () => {
   const password = "Password1";
   const securityQuestionAnswer = "Bratina";
 
-  it("Test valid signup", () => {
+  beforeEach(() => {
     cy.visit("http://localhost:3000/#/");
     cy.get(".cdk-overlay-backdrop").click(-50, -50, { force: true });
     cy.get("#navbarAccount").click();
     cy.get("#navbarLoginButton").click({ force: true });
+  });
+
+  it("Test valid signup", () => {
     cy.get("#newCustomerLink > .primary-link").click({ force: true });
     cy.get("#emailControl").type(email);
     cy.get("#passwordControl").type(password);
@@ -27,10 +30,6 @@ describe("Signup Test", () => {
   });
 
   it("Test valid login", () => {
-    cy.visit("http://localhost:3000/#/");
-    cy.get(".cdk-overlay-backdrop").click(-50, -50, { force: true });
-    cy.get("#navbarAccount").click();
-    cy.get("#navbarLoginButton").click({ force: true });
     cy.get("#email").type(email);
     cy.get("#password").type(password);
     cy.get("#loginButton").click();
